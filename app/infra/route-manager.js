@@ -7,7 +7,7 @@ import nconf from 'nconf';
 
 import React from 'react'
 import {renderToString} from 'react-dom/server';
-import {match, RoutingContext} from 'react-router';
+import {match, RouterContext} from 'react-router';
 
 import baseManager from './base-manager';
 import routes from '../routes';
@@ -15,22 +15,25 @@ import routes from '../routes';
 import ContextWrapper from '../components/common/ContextWrapper';
 
 const routeManager = Object.assign({}, baseManager, {
+
     configureDevelopmentEnv(app) {
         const apiRouter = this.createApiRouter();
         const pagesRouter = this.createPageRouter();
-        app.use('/api', apiRouter);            
-        app.use('/', pagesRouter);            
+        app.use('/api', apiRouter);
+        app.use('/', pagesRouter);
     },
 
     createPageRouter() {
         const router = express.Router();
-    
+
         router.get('*', (req, res) => {
             match({routes, location: req.originalUrl}, (err, redirectLocation, renderProps) => {
+
                 const {promises, components} = this.mapComponentsToPromises(
                     renderProps.components, renderProps.params);
 
                 Promise.all(promises).then((values) => {
+
                     const data = this.prepareData(values, components);
                     const html = this.render(renderProps, data);
 
@@ -38,7 +41,9 @@ const routeManager = Object.assign({}, baseManager, {
                         content: html,
                         context: JSON.stringify(data)
                     });
+
                 }).catch((err) => {
+                    console.error(err);
                     res.status(500).send(err);
                 });
             });
@@ -53,7 +58,7 @@ const routeManager = Object.assign({}, baseManager, {
         });
 
         const promises = filteredComponents.map(function(Component) {
-            return Component.requestData(params, nconf.get('domain'));                  
+            return Component.requestData(params, nconf.get('domain'));
         });
 
         return {promises, components: filteredComponents};
@@ -69,10 +74,10 @@ const routeManager = Object.assign({}, baseManager, {
         return map;
     },
 
-    render(renderProps, data) {      
+    render(renderProps, data) {
         let html = renderToString(
             <ContextWrapper data={data}>
-                <RoutingContext {...renderProps}/>
+                <RouterContext {...renderProps}/>
             </ContextWrapper>
         );
 
@@ -81,17 +86,20 @@ const routeManager = Object.assign({}, baseManager, {
 
 
     createApiRouter(app) {
+
         const router = express.Router();
 
         this.createLastestBillsRoute(router);
-        this.createDetailedBillRoute(router);        
+        this.createDetailedBillRoute(router);
+        this.createProductDetailRoute(router);
+
         return router;
     },
     createLastestBillsRoute(router) {
         router.get('/latest-bills', (req, res) => {
             this.retrieveLatestBills((err, data) => {
                 if(!err) {
-                    res.json(data);                                    
+                    res.json(data);
                 } else {
                     res.status(500).send(err);
                 }
@@ -101,6 +109,7 @@ const routeManager = Object.assign({}, baseManager, {
 
     createDetailedBillRoute(router) {
         router.get('/bill/:id', (req, res) => {
+
             const id = req.params.id;
 
             this.retrieveDetailedBills((err, data) => {
@@ -109,12 +118,26 @@ const routeManager = Object.assign({}, baseManager, {
                         return item.id === id;
                     })[0];
 
-                    res.json(billData);                                    
+                    res.json(billData);
                 } else {
                     res.status(500).send(err);
                 }
             });
         });
+    },
+    createProductDetailRoute(router) {
+
+        router.get('/product-detail/:id', (req, res) => {
+
+            this.retrieveProductDetails(req.params, (err, data) => {
+                if(!err) {
+                    res.json(data);
+                } else {
+                    res.status(500).send(err);
+                }
+            });
+        });
+
     },
     retrieveLatestBills(callback) {
         FS.readFile('./app/fixtures/latest-bills.json', 'utf-8', (err, content) => {
@@ -126,7 +149,31 @@ const routeManager = Object.assign({}, baseManager, {
         FS.readFile('./app/fixtures/detailed-bills.json', 'utf-8', (err, content) => {
             callback(err, JSON.parse(content));
         });
+    },
+
+    retrieveProductDetails(params, callback) {
+
+        const url = `http:\/\/localhost:3333/api/content/productPage/${params.id}`;
+
+        console.info(`retrieveProductDetails:url: ${url}`);
+
+        axios.get(url)
+            .then((response) => {
+
+                console.info(`axios success: ${response}`);
+
+                callback(false, response);
+
+            })
+            .catch((error) => {
+
+                console.error(`axios error: ${error}`);
+                callback(error, {});
+
+            });
+
     }
+
 });
 
 export default routeManager;
