@@ -5,11 +5,6 @@ export default class ProductDetailHelmet extends CommonHelmet {
 
     render() {
         const {seo} = this.props;
-
-        console.log('-----------');
-        console.log(seo);
-        console.log('-----------');
-
         return (
             <CommonHelmet
                 title={seo.title}

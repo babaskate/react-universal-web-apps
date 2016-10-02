@@ -88,41 +88,9 @@ const routeManager = Object.assign({}, baseManager, {
 
         const router = express.Router();
 
-        this.createLastestBillsRoute(router);
-        this.createDetailedBillRoute(router);
         this.createProductDetailRoute(router);
 
         return router;
-    },
-    createLastestBillsRoute(router) {
-        router.get('/latest-bills', (req, res) => {
-            this.retrieveLatestBills((err, data) => {
-                if(!err) {
-                    res.json(data);
-                } else {
-                    res.status(500).send(err);
-                }
-            });
-        });
-    },
-
-    createDetailedBillRoute(router) {
-        router.get('/bill/:id', (req, res) => {
-
-            const id = req.params.id;
-
-            this.retrieveDetailedBills((err, data) => {
-                if(!err) {
-                    const billData = data.items.filter((item) => {
-                        return item.id === id;
-                    })[0];
-
-                    res.json(billData);
-                } else {
-                    res.status(500).send(err);
-                }
-            });
-        });
     },
     createProductDetailRoute(router) {
 
@@ -138,18 +106,6 @@ const routeManager = Object.assign({}, baseManager, {
         });
 
     },
-    retrieveLatestBills(callback) {
-        FS.readFile('./app/fixtures/latest-bills.json', 'utf-8', (err, content) => {
-            callback(err, JSON.parse(content));
-        });
-    },
-
-    retrieveDetailedBills(callback) {
-        FS.readFile('./app/fixtures/detailed-bills.json', 'utf-8', (err, content) => {
-            callback(err, JSON.parse(content));
-        });
-    },
-
     retrieveProductDetails(params, callback) {
 
         const url = `http:\/\/localhost:3333/api/content/productPage/${params.id}`;
