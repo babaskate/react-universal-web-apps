@@ -1,0 +1,107 @@
+body {
+    font-family: $default-font-family;
+    font-weight: $font-weight-book;
+    line-height: rem(20);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+    font-family: 'ProbaPro regular', Arial, sans-serif;
+    color: #333333;
+    font-weight: $font-weight-bold;
+}
+
+h1,
+h4 {
+    font-weight: $font-weight-light;
+}
+
+h1 {
+    font-size: rem(40);
+    line-height: rem(50);
+    @include desktop() {
+        font-size: rem(60);
+    }
+}
+
+h2 {
+    font-size: rem(30);
+    line-height: rem(35);
+}
+
+h3 {
+    font-size: rem(28);
+    line-height: rem(38);
+}
+
+h4 {
+    font-size: rem(25);
+    line-height: rem(35);
+    @include desktop() {
+        font-size: rem(30);
+        font-weight: $font-weight-book;
+    }
+}
+
+h5 {
+    font-size: rem(20);
+    line-height: rem(35);
+}
+
+b,
+strong {
+    font-weight: $font-weight-bold;
+}
+
+body,
+p {
+    color: #000;
+}
+
+p {
+    font-size: rem(14);
+    line-height: rem(20);
+    padding: 15px 0;
+    color: #333333;
+}
+
+input,
+textarea,
+button,
+select,
+label,
+a {
+    -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+
+.clearfix:after{
+    content: "";
+    clear: both;
+    display: block;
+}
+.wrapper{
+    width: 1200px;
+    margin: 0 auto;
+    > h1{
+        text-align: left;
+        margin: 40px 0 15px 0;
+    }
+}
+.text-hiding{
+    width: 100%;
+    width: 300px;
+    overflow: hidden;
+    position: relative;
+}
+.text-hiding:after {
+    content: "";
+    width: 100%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: linear-gradient(90deg, rgba(255,255,255,0), rgba(0,0,0,1));
+}

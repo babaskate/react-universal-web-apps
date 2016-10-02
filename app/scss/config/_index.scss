@@ -1,0 +1,8 @@
+$base-path : '/dist';
+$fonts-path : '#{$base-path}/assets/fonts';
+$images-base-path : '#{$base-path}/assets/images';
+
+//@import 'color.definitions';
+@import 'font.definitions';
+@import 'breakpoint.definitions';
+//@import 'grid.definitions';

@@ -1,0 +1,15 @@
+@include generateFontFace($primary-font-name, $primary-fonts, $primary-font-weights, normal, $primary-font-formats);
+@include generateFontFace($primary-font-name, $primary-fonts-italic, $primary-font-weights-italic, italic, $primary-font-formats);
+
+.bold {
+    font-weight: $font-weight-bold;
+}
+.regular {
+    font-weight: $font-weight-regular;
+}
+.book {
+    font-weight: $font-weight-book;
+}
+.light {
+    font-weight: $font-weight-light;
+}

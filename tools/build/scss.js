@@ -12,7 +12,7 @@ const ROOT = '../../';
 
 const SCSS_SRC_FOLDER = PATH.resolve(__dirname, ROOT, 'app/scss/');
 const SCSS_SRC_FILES = PATH.resolve(__dirname, ROOT, SCSS_SRC_FOLDER, '**/*.scss');
-const SCSS_SRC_FILE = PATH.resolve(__dirname, ROOT, SCSS_SRC_FOLDER, 'style.scss');
+const SCSS_SRC_FILE = PATH.resolve(__dirname, ROOT, SCSS_SRC_FOLDER, 'main.scss');
 const SCSS_BUILD_FOLDER = PATH.resolve(__dirname, ROOT, 'app/public/css/');
 
 gulp.task('build:scss', function () {
@@ -21,7 +21,7 @@ gulp.task('build:scss', function () {
         .pipe(plumber())
         .pipe(sourcemap.init())
         .pipe(sass({outputStyle: 'expanded'}).on('error', sass.logError))
-        .pipe(autoprefixer())        
+        .pipe(autoprefixer())
         .pipe(sourcemap.write())
         .pipe(gulp.dest(SCSS_BUILD_FOLDER));
 });

@@ -1,0 +1,63 @@
+.product-cards-item{
+	width: 540px;
+	height: 570px;
+	background: url('../assets/images/product-image.jpg') -40px -75px;
+	display: inline-block;
+
+	margin: 15px;
+
+
+	.grid-header{
+		float: left;
+	}
+	.grid-price-section{
+		float: right;
+	}
+	.product-cards-item-header{
+		padding: 10px 10px 20px 10px;
+	}
+	.black{
+		background: -webkit-linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+	    background: -o-linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+	    background: -moz-linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+	    background: linear-gradient(rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
+		color: #ffffff;
+		height: 260px;
+	}
+	.green{
+		background: #5b9546;
+		height: 80px;
+	}
+	.title{
+		color: #ffffff;
+		font-size: 16px;
+		font-weight: $font-weight-light;
+			
+	}
+	.subtext{
+		color: #ffffff;
+		font-size: 14px;
+		font-weight: $font-weight-light;
+		font-style: italic;
+		text-align: left;
+	}
+	.price{
+		color: #ffffff;
+		font-size: 20px;
+		font-weight: $font-weight-light;
+		text-align: right;
+	}
+	.sale{
+		font-family: 'ProbaPro Regular', Arial, sans-serif;
+		font-size: 14px;
+		font-weight: $font-weight-light;
+		color: #ffffff;
+		text-transform: uppercase;
+	}
+}
+.product-cards .wrapper{
+	text-align: center;
+	h1{
+		text-align: left;
+	}
+}
