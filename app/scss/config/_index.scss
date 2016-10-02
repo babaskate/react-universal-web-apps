@@ -1,6 +1,6 @@
-$base-path : '/dist';
-$fonts-path : '#{$base-path}/assets/fonts';
-$images-base-path : '#{$base-path}/assets/images';
+$base-path : '/assets';
+$fonts-path : '#{$base-path}/fonts';
+$images-base-path : '#{$base-path}/images';
 
 //@import 'color.definitions';
 @import 'font.definitions';
