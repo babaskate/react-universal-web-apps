@@ -1,7 +1,7 @@
 import React from 'react';
 import {IndexRoute, Route} from 'react-router';
 
-import App from './components/app';
+import App from './containers/App';
 import NoMatch from './components/common/NoMatch';
 
 import Dashboard from './components/dashboard/Dashboard';
