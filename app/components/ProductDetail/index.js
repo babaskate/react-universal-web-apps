@@ -25,9 +25,9 @@ export default class ProductDetail extends React.Component {
 
     render() {
         return (
-            <div class="hero-unit">
+            <div>
                 <h2>{this.state.product.title}</h2>
-                <div class="col-main nine columns push-three offset-content">
+                <div>
                     <h4>{this.state.product.price}</h4>
                     <img src={this.state.product.image.url} />
                     <p>{this.state.product.details}</p>

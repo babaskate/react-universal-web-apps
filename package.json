@@ -36,6 +36,8 @@
     "babel-preset-react": "^6.16.0",
     "babel-preset-stage-0": "^6.16.0",
     "babel-register": "^6.16.3",
+    "bourbon": "^4.2.7",
+    "bourbon-neat": "^1.8.0",
     "browser-sync": "^2.9.11",
     "chokidar-cli": "^1.1.1",
     "eslint": "^3.7.0",

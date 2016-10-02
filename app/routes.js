@@ -14,8 +14,8 @@ export default (
         <Route component={Dashboard}>
             <IndexRoute component={LatestBills}/>
             <Route path="bill/:id" component={DetailedBill}/>
+            <Route path="product-detail/:id" component={ProductDetail}/>
         </Route>
-        <Route path="product-detail/:id" component={ProductDetail}/>
         <Route path="*" component={NoMatch}/>
     </Route>
 );
