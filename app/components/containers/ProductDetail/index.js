@@ -1,7 +1,9 @@
 import React from 'react';
 import axios from 'axios';
+import ProductDetailHelmet from './ProductDetailHelmet';
 
 export default class ProductDetail extends React.Component {
+
     static get NAME() {
         return 'ProductDetail';
     }
@@ -32,6 +34,7 @@ export default class ProductDetail extends React.Component {
     render() {
         return (
             <div>
+                <ProductDetailHelmet seo={this.state.seo} />
                 <h2>{this.state.product.title}</h2>
                 <div>
                     <h4>{this.state.product.price}</h4>

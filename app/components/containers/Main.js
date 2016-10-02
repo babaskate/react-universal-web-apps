@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default class Dashboard extends React.Component {
+export default class Main extends React.Component {
     render() {
         return (
-            <main className="app-content dashboard">
+            <main>
                 {this.props.children}
             </main>
         );

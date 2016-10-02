@@ -12,7 +12,8 @@ import {match, RouterContext} from 'react-router';
 import baseManager from './base-manager';
 import routes from '../routes';
 
-import ContextWrapper from '../components/common/ContextWrapper';
+import ContextWrapper from '../components/utils/ContextWrapper';
+import Html from '../components/containers/Html';
 
 const routeManager = Object.assign({}, baseManager, {
 
@@ -37,10 +38,8 @@ const routeManager = Object.assign({}, baseManager, {
                     const data = this.prepareData(values, components);
                     const html = this.render(renderProps, data);
 
-                    res.render('index', {
-                        content: html,
-                        context: JSON.stringify(data)
-                    });
+                    res.send('<!doctype html>\n' +
+                        renderToString(<Html component={html} context={data} />));
 
                 }).catch((err) => {
                     console.error(err);

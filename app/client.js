@@ -5,7 +5,7 @@ import {render} from 'react-dom';
 
 import routes from './routes';
 
-import ContextWrapper from './components/common/ContextWrapper';
+import ContextWrapper from './components/utils/ContextWrapper';
 
 render((
     <ContextWrapper data={window.APP_STATE || {}}>
