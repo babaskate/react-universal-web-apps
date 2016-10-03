@@ -1,5 +1,3 @@
-import FS from 'fs';
-
 import express from 'express';
 import axios from 'axios';
 
@@ -94,7 +92,7 @@ const routeManager = Object.assign({}, baseManager, {
     },
     createProductDetailRoute(router) {
 
-        router.get('/product-detail/:id', (req, res) => {
+        router.get('/products/:id', (req, res) => {
 
             this.retrieveProductDetails(req.params, (err, data) => {
                 if(!err) {

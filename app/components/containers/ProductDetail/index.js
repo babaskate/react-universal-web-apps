@@ -17,7 +17,7 @@ export default class ProductDetail extends React.Component {
     static requestData(params, domain) {
         console.info(`ProductDetail:requestData:${params.id}`);
         this.domain = domain;
-        return axios.get(`${domain}/api/product-detail/${params.id}`);
+        return axios.get(`${domain}/api/products/${params.id}`);
     }
 
     constructor(props, context) {
